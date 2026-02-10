@@ -1,0 +1,36 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+
+class Solution {
+    Node segregate(Node head) {
+        int[] count = new int[3];
+        Node temp = head;
+
+        while (temp != null) {
+            count[temp.data]++;
+            temp = temp.next;
+        }
+
+        temp = head;
+        int i = 0;
+
+        while (temp != null) {
+            if (count[i] == 0) {
+                i++;
+            } else {
+                temp.data = i;
+                count[i]--;
+                temp = temp.next;
+            }
+        }
+
+        return head;
+    }
+}
